@@ -1,0 +1,2 @@
+#define SpotifyWindowName L"SpotifyMainWindow"
+
