@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include <wchar.h>
 #include <stdio.h>
+#include <time.h>
 
 #include "list.h"
 
@@ -28,7 +29,7 @@ void SaveToList(const wchar_t* currentSong, Node** list)
 {
 	wchar_t		songName[MAX_PATH];
 	wchar_t		artistName[MAX_PATH];
-	int			currentSongLength = wcslen(currentSong);
+	int			currentSongLength = (int) wcslen(currentSong);
 	time_t		rawTime = time(NULL);
 	struct tm	localTime;
 
@@ -53,8 +54,9 @@ void SearchListByTitle(Node* list, const wchar_t* songName)
 	Node* head = list;
 	while (list != NULL) {
 		if (wcsstr(list->SongName, songName)) {
-			printf("%s - %s", list->ArtistName, list->SongName);
+			wprintf("%s - %s", list->ArtistName, list->SongName);
 		}
 		list = list->Next;
 	}
+	list = 
 }

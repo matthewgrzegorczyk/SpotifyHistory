@@ -151,11 +151,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ListFileManager.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="list.c" />
+    <ClCompile Include="SpotifyListener.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SpotifyListener.h" />
     <ClInclude Include="ListFileManager.h" />
     <ClInclude Include="list.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

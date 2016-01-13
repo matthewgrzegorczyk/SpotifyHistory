@@ -22,6 +22,7 @@ void displayMenu() {
 
 int main(int argc, char* argv[])
 {
+	HWND	hWndSpotify	= FindWindow(SpotifyWindowName, NULL);
 	Node*	list		= NULL;
 	char	keyPressed	= 0;
 	wchar_t	currentSong[MAX_PATH];

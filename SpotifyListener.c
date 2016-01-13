@@ -1,5 +1,8 @@
 #include <Windows.h>
+#include <conio.h>
 
 #include "SpotifyListener.h"
 
-HWND	hWndSpotify = FindWindow(SpotifyWindowName, NULL);
+void SpotifyListener() {
+	HWND	hWndSpotify = FindWindow(SpotifyWindowName, NULL);
+}

@@ -18,6 +18,15 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="list.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ListFileManager.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SpotifyListener.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="list.h">
@@ -26,5 +35,13 @@
     <ClInclude Include="ListFileManager.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpotifyListener.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
