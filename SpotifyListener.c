@@ -6,10 +6,10 @@
 #include "list.h"
 
 extern char keyPressed;
+extern Node* list;
 
 DWORD WINAPI SpotifyListener(LPVOID lpArg) {
 	HWND	hWndSpotify = FindWindow(SpotifyWindowName, NULL);
-	Node*	list = NULL;
 	//char	keyPressed = 0;
 	wchar_t	currentSong[MAX_PATH];
 	wchar_t	lastSong[MAX_PATH];
@@ -33,7 +33,7 @@ DWORD WINAPI SpotifyListener(LPVOID lpArg) {
 		if (wcscmp(currentSong, lastSong) != 0)
 		{
 			// Save song details.
-			// wprintf(L"%s\n", currentSong);
+			wprintf(L"%s\n", currentSong);
 			wcscpy_s(lastSong, MAX_PATH, currentSong);
 
 			// Skip saving output of Window Title if music is not playing (window title is equal Spotify then).
@@ -42,11 +42,6 @@ DWORD WINAPI SpotifyListener(LPVOID lpArg) {
 				SaveToList(currentSong, &list);
 				SaveToFile(currentSong);
 			}
-		}
-
-		// get asynchronously pressed key
-		if (_kbhit()) {
-			keyPressed = _getch();
 		}
 
 		// Run loop each 100ms. It may be a good idea to change it's value to even longer period of time.

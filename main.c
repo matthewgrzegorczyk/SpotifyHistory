@@ -10,14 +10,15 @@
 #include "ListFileManager.h"
 #include "SpotifyListener.h"
 
+char keyPressed = 0;
+Node* list = NULL;
+
 // Function which dispalys menu.
 void displayMenu() {
 	printf("1 - Display current playing track.\n");
 	printf("2 - Display session history.\n");
 	printf("ESC - Exit app and save session history to the file.\n");
 }
-
-char keyPressed = 0;
 
 int main(int argc, char* argv[])
 {
@@ -37,7 +38,20 @@ int main(int argc, char* argv[])
 	// Run till user won't click ESC key.
 	while (keyPressed != 27) {
 		displayMenu();
-		keyPressed = _getch();
+
+		if (_kbhit()) {
+			keyPressed = _getch();
+		}
+
+		system("CLS");
+		printf("Keypressed: %d\n", keyPressed);
+
+		if (keyPressed == 49) {
+			printf("Music list:\n");
+			DisplayList(list);
+			system("PAUSE");
+			keyPressed = 0;
+		}
 	}
 
 	WaitForSingleObject(tHandle, INFINITE);

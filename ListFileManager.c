@@ -22,7 +22,7 @@ void SaveListToFile(const Node* list)
 
 	while (p)
 	{
-		_wcsftime_l(bufferTime, 64, L"[%Y-%m-%d %H:%M-%S]", &p->Time, NULL);
+		_wcsftime_l(bufferTime, 64, L"[%Y-%m-%d %H:%M:%S]", &p->Time, NULL);
 		fwprintf(file, L"%s %s - %s\r\n", bufferTime, p->ArtistName, p->SongName);
 		p = p->Next;
 	}

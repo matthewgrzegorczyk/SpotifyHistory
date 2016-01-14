@@ -49,13 +49,40 @@ void SaveToList(const wchar_t* currentSong, Node** list)
 	PushNode(list, songName, artistName, localTime);
 }
 
+void DisplayList(Node* list) {
+	Node* p = list;
+	if (p == NULL) {
+		printf("Supplied Node is empty.");
+	}
+	else {
+		printf("List is not null?!");
+	}
+	while (p != NULL) {
+		wprintf("%s - %s\n", p->ArtistName, p->SongName);
+		p = p->Next;
+	}
+}
+
 void SearchListByTitle(Node* list, const wchar_t* songName) 
 {
 	Node* head = list;
+
 	while (list != NULL) {
 		if (wcsstr(list->SongName, songName)) {
 			wprintf("%s - %s", list->ArtistName, list->SongName);
 		}
 		list = list->Next;
+	}
+}
+
+void SearchListbyArtist(Node* list, const wchar_t* artistName)
+{
+	Node* p = list;
+
+	while (p != NULL) {
+		if (wcsstr(p->ArtistName, artistName)) {
+			wprintf("%s - %s", p->ArtistName, p->SongName);
+		}
+		p = p->Next;
 	}
 }
