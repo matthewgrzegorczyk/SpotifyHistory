@@ -4,6 +4,7 @@
 
 #include "SpotifyListener.h"
 #include "list.h"
+#include "ListFileManager.h"
 
 extern char keyPressed;
 extern Node* list;

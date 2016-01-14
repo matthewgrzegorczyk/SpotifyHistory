@@ -52,37 +52,47 @@ void SaveToList(const wchar_t* currentSong, Node** list)
 void DisplayList(Node* list) {
 	Node* p = list;
 	if (p == NULL) {
-		printf("Supplied Node is empty.");
+		printf("There is no current Spotify History present in this app session.");
 	}
-	else {
-		printf("List is not null?!");
-	}
+
 	while (p != NULL) {
-		wprintf("%s - %s\n", p->ArtistName, p->SongName);
+		wprintf(L"%s - %s\n", p->ArtistName, p->SongName);
 		p = p->Next;
 	}
 }
 
 void SearchListByTitle(Node* list, const wchar_t* songName) 
 {
-	Node* head = list;
+	Node* p = list;
+	int i = 0;
 
 	while (list != NULL) {
-		if (wcsstr(list->SongName, songName)) {
-			wprintf("%s - %s", list->ArtistName, list->SongName);
+		if (wcsstr(list->SongName, songName) != NULL) {
+			wprintf(L"%s - %s\n", list->ArtistName, list->SongName);
+			i++;
 		}
 		list = list->Next;
 	}
+
+	if (i == 0) {
+		printf("There are no results to dislay.");
+	}
 }
 
-void SearchListbyArtist(Node* list, const wchar_t* artistName)
+void SearchListByArtist(Node* list, const wchar_t* artistName)
 {
 	Node* p = list;
+	int i = 0;
 
 	while (p != NULL) {
-		if (wcsstr(p->ArtistName, artistName)) {
-			wprintf("%s - %s", p->ArtistName, p->SongName);
+		if (wcsstr(p->ArtistName, artistName) != NULL) {
+			wprintf(L"%s - %s\n", p->ArtistName, p->SongName);
+			i++;
 		}
 		p = p->Next;
+	}
+
+	if (i == 0) {
+		printf("There are no results to dislay.");
 	}
 }
