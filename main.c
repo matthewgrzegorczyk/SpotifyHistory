@@ -10,69 +10,36 @@
 #include "ListFileManager.h"
 #include "SpotifyListener.h"
 
-// static const wchar_t SpotifyWindowName[] = L"SpotifyMainWindow";
-
-
+// Function which dispalys menu.
 void displayMenu() {
-	printf("1 - Display current playing track.");
-	printf("2 - Display session history.");
-	printf("ESC - Exit app and save session history to the file.");
+	printf("1 - Display current playing track.\n");
+	printf("2 - Display session history.\n");
+	printf("ESC - Exit app and save session history to the file.\n");
 }
 
+char keyPressed = 0;
 
 int main(int argc, char* argv[])
 {
-	HWND	hWndSpotify	= FindWindow(SpotifyWindowName, NULL);
-	Node*	list		= NULL;
-	char	keyPressed	= 0;
-	wchar_t	currentSong[MAX_PATH];
-	wchar_t	lastSong[MAX_PATH];
+	int* lpArgPtr = (int *)malloc(sizeof(int));
+	HANDLE tHandle;
+	DWORD ThreadId;
 
-	memset(currentSong, 0, sizeof(wchar_t) * MAX_PATH);
-	memset(lastSong, 0, sizeof(wchar_t) * MAX_PATH);
+	tHandle = CreateThread(NULL, 0, SpotifyListener, lpArgPtr, 0, &ThreadId);
 
-	// Check SpotifyMainWindow Caption as long as window exists or User won't click ESC key.
-	while (hWndSpotify && keyPressed != 27)
-	{
-		// Check if Spotify is still running and Window title is available.
-		hWndSpotify = FindWindow(SpotifyWindowName, NULL);
-		if (!hWndSpotify) {
-			break;
-		}
-
-		// Get current song name.
-		GetWindowText(hWndSpotify, currentSong, MAX_PATH);
-
-		// If currentSong is different than lastSong then print it out.
-		if (wcscmp(currentSong, lastSong) != 0)
-		{
-			// Save song details.
-			wprintf(L"%s\n", currentSong);
-			wcscpy_s(lastSong, MAX_PATH, currentSong);
-
-			// Skip saving output of Window Title if music is not playing (window title is equal Spotify then).
-			if (wcscmp(currentSong, L"Spotify") != 0)
-			{
-				SaveToList(currentSong, &list);
-				SaveToFile(currentSong);
-			}
-		}
-
-		// get asynchronously pressed key
-		if (_kbhit()) {
-			keyPressed = _getch();
-		}
-
-		// Run loop each 100ms. It may be a good idea to change it's value to even longer period of time.
-		Sleep(100);
+	if (tHandle == NULL) {
+		printf("Could not create Thread for SpotifyListener\n");
+	}
+	else {
+		printf("Thread %d was created\n", ThreadId);
 	}
 
-	// Save history (history for each run will get appended to the file).
-	SaveListToFile(list);
-
-	while (list) {
-		PopNode(&list);
+	// Run till user won't click ESC key.
+	while (keyPressed != 27) {
+		displayMenu();
+		keyPressed = _getch();
 	}
 
+	WaitForSingleObject(tHandle, INFINITE);
 	return 0;
 }

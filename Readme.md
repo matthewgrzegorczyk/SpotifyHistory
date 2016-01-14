@@ -28,3 +28,4 @@ If you want to close the application, just focus it and hit ESC key.
 ### Hardware
 - Machine with at least 1GB of RAM. (Program itself needs around 1-2MB of RAM. Depends on how big is history keept within the app).
 - Intel Pentium Dual Core equivalent.
+Testing.

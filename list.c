@@ -58,5 +58,4 @@ void SearchListByTitle(Node* list, const wchar_t* songName)
 		}
 		list = list->Next;
 	}
-	list = 
 }
