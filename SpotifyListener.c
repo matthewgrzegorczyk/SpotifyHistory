@@ -7,6 +7,7 @@
 
 extern char keyPressed;
 extern Node* list;
+extern CRITICAL_SECTION CriticalSection;
 
 DWORD WINAPI SpotifyListener(LPVOID lpArg) {
 	HWND	hWndSpotify = FindWindow(SpotifyWindowName, NULL);
@@ -39,8 +40,12 @@ DWORD WINAPI SpotifyListener(LPVOID lpArg) {
 			// Skip saving output of Window Title if music is not playing (window title is equal Spotify then).
 			if (wcscmp(currentSong, L"Spotify") != 0)
 			{
+				// Request ownership of the critical section.
+				EnterCriticalSection(&CriticalSection);
 				SaveToList(currentSong, &list);
 				SaveToFile(currentSong);
+				// Release ownership of the critical section.
+				LeaveCriticalSection(&CriticalSection);
 			}
 		}
 

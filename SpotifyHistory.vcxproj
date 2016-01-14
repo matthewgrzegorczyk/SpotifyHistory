@@ -157,6 +157,7 @@
     <ClCompile Include="SpotifyListener.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="main.h" />
     <ClInclude Include="SpotifyListener.h" />
     <ClInclude Include="ListFileManager.h" />
     <ClInclude Include="list.h" />
